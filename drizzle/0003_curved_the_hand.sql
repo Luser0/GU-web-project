@@ -1,1 +1,1 @@
-ALTER TABLE `event` ADD `location` text NOT NULL;
+ALTER TABLE `event` ADD `location` text;

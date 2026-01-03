@@ -5,7 +5,7 @@ export const event = sqliteTable("event", {
   name: text().notNull(),
   description: text().notNull(),
   slug: text().notNull().unique(),
-  location: text().notNull(),
+  location: text(),
   date: int({ mode: "timestamp" }).notNull(),
   categoryId: int()
     .notNull()
