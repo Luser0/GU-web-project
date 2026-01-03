@@ -38,11 +38,11 @@ if (navbar) {
           <!-- Desktop Menu -->
           <div class="hidden md:flex md:items-center md:space-x-6">
             <a href="/" class="hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Home</a>
-            <a href="/about/" class="hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">About</a>
-            <a href="/events/" class="hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Events</a>
-            <a href="/budget-calculator/" class="hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Budget Calculator</a>
-            <a href="/registration/" class="hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Registration</a>
-            <a href="/contact/" class="hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+            <a href="/pages/about.html" class="hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">About</a>
+            <a href="/pages/events.html" class="hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Events</a>
+            <a href="/pages/budget-calculator.html" class="hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Budget Calculator</a>
+            <a href="/pages/registration.html" class="hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Registration</a>
+            <a href="/pages/contact.html" class="hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Contact</a>
           </div>
 
           <!-- Mobile menu button -->
@@ -66,11 +66,11 @@ if (navbar) {
       <div id="mobile-menu" class="hidden md:hidden">
         <div class="px-2 pt-2 pb-3 space-y-1 bg-gray-800">
           <a href="/" class="block hover:bg-gray-700 hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-base font-medium">Home</a>
-          <a href="/about/" class="block hover:bg-gray-700 hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-base font-medium">About</a>
-          <a href="/events/" class="block hover:bg-gray-700 hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-base font-medium">Events</a>
-          <a href="/budget-calculator/" class="block hover:bg-gray-700 hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-base font-medium">Budget Calculator</a>
-          <a href="/registration/" class="block hover:bg-gray-700 hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-base font-medium">Registration</a>
-          <a href="/contact/" class="block hover:bg-gray-700 hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-base font-medium">Contact</a>
+          <a href="/pages/about.html" class="block hover:bg-gray-700 hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-base font-medium">About</a>
+          <a href="/pages/events.html" class="block hover:bg-gray-700 hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-base font-medium">Events</a>
+          <a href="/pages/budget-calculator.html" class="block hover:bg-gray-700 hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-base font-medium">Budget Calculator</a>
+          <a href="/pages/registration.html" class="block hover:bg-gray-700 hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-base font-medium">Registration</a>
+          <a href="/pages/contact.html" class="block hover:bg-gray-700 hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-base font-medium">Contact</a>
         </div>
       </div>
       `;
