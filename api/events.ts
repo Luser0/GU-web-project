@@ -9,13 +9,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       description: string;
       date: string;
       categoryId: number;
+      location: string;
     };
 
     if (
       !reqBody.name ||
       !reqBody.description ||
       !reqBody.date ||
-      !reqBody.categoryId
+      !reqBody.categoryId ||
+      !reqBody.location
     ) {
       return res.status(400).json({ error: "Missing required fields" });
     }
