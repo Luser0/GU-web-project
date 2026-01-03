@@ -296,7 +296,7 @@ function initializeEventListeners(): void {
 
   closeModalBtn?.addEventListener("click", closeModal);
   registerBtn?.addEventListener("click", registerForEvent);
-  shareBtn?.addEventListener("click", shareEvent);
+//   shareBtn?.addEventListener("click", shareEvent);
 
   modal?.addEventListener("click", (e) => {
     if (e.target === modal) closeModal();
