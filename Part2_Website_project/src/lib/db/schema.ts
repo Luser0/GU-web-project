@@ -1,37 +1,57 @@
-import { int, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import * as sqliteCore from "drizzle-orm/sqlite-core";
 
-export const event = sqliteTable("event", {
-  id: int().primaryKey({ autoIncrement: true }),
-  name: text().notNull(),
-  description: text().notNull(),
-  slug: text().notNull().unique(),
-  location: text(),
-  date: int({ mode: "timestamp" }).notNull(),
-  categoryId: int()
+
+/**
+ * Events Table 
+ */
+export const event = sqliteCore.sqliteTable("event", {
+  id: sqliteCore.int().primaryKey({ autoIncrement: true }),
+  name: sqliteCore.text().notNull(),
+  description: sqliteCore.text().notNull(),
+  slug: sqliteCore.text().notNull().unique(),
+  date: sqliteCore.int({ mode: "timestamp" }).notNull(),
+  categoryId: sqliteCore.int()
     .notNull()
     .references(() => event_category.id),
+  location: sqliteCore.text().notNull()
 });
 
-export const event_media = sqliteTable("event_media", {
-  id: int().primaryKey({ autoIncrement: true }),
-  eventId: int()
+
+
+
+/**
+ * Event Media Table 
+ */
+export const event_media = sqliteCore.sqliteTable("event_media", {
+  id: sqliteCore.int().primaryKey({ autoIncrement: true }),
+  eventId: sqliteCore.int()
     .notNull()
     .references(() => event.id),
-  url: text().notNull(),
-  type: text().notNull().$type<"image" | "video">(),
+  url: sqliteCore.text().notNull(),
+  type: sqliteCore.text().notNull().$type<"image" | "video">(),
 });
 
-export const event_category = sqliteTable("event_category", {
-  id: int().primaryKey({ autoIncrement: true }),
-  name: text().notNull(),
+
+
+/**
+ * Event Category Table 
+ */
+export const event_category = sqliteCore.sqliteTable("event_category", {
+  id: sqliteCore.int().primaryKey({ autoIncrement: true }),
+  name: sqliteCore.text().notNull(),
 });
 
-export const attendee = sqliteTable("attendee", {
-  id: int().primaryKey({ autoIncrement: true }),
-  name: text().notNull(),
-  email: text().notNull().unique(),
-  phonenumber: text().notNull().unique(),
-  eventId: int()
+
+
+/**
+ * Attendee Table
+ */
+export const attendee = sqliteCore.sqliteTable("attendee", {
+  id: sqliteCore.int().primaryKey({ autoIncrement: true }),
+  name: sqliteCore.text().notNull(),
+  email: sqliteCore.text().notNull().unique(),
+  phonenumber: sqliteCore.text().notNull().unique(),
+  eventId: sqliteCore.int()
     .notNull()
     .references(() => event.id),
 });
