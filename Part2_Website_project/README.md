@@ -15,17 +15,20 @@ A full-stack event management and registration platform built with modern web te
 ## Tech Stack
 
 ### Frontend
+
 - **HTML/CSS/TypeScript** - Core web technologies
 - **Tailwind CSS** - Utility-first CSS framework
 - **Vite** - Next-generation frontend build tool
 
 ### Backend
+
 - **Node.js** - Runtime environment
 - **Drizzle ORM** - Type-safe database ORM
 - **SQLite** - Lightweight database
 - **Vercel Functions** - Serverless API deployment
 
 ### Database
+
 - **libSQL** - SQLite-compatible database client
 - **Drizzle Kit** - Database schema management
 
@@ -67,6 +70,7 @@ Part2_Website_project/
 ## Database Schema
 
 ### Events Table
+
 - `id` - Primary key
 - `name` - Event name
 - `description` - Event description
@@ -76,10 +80,12 @@ Part2_Website_project/
 - `categoryId` - Reference to event category
 
 ### Event Categories Table
+
 - `id` - Primary key
 - `name` - Category name
 
 ### Attendees Table
+
 - `id` - Primary key
 - `name` - Attendee name
 - `email` - Email address (unique)
@@ -87,6 +93,7 @@ Part2_Website_project/
 - `eventId` - Reference to event
 
 ### Event Media Table
+
 - `id` - Primary key
 - `eventId` - Reference to event
 - `url` - Media URL
@@ -102,17 +109,20 @@ Part2_Website_project/
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 cd Part2_Website_project
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Set up environment variables:
-Create a `.env` file with your database configuration:
+   Create a `.env` file with your database configuration:
+
 ```env
 DATABASE_URL=your_libsql_connection_string
 ```
@@ -120,6 +130,7 @@ DATABASE_URL=your_libsql_connection_string
 ### Development
 
 Start the development server:
+
 ```bash
 npm run dev
 ```
@@ -129,11 +140,13 @@ The application will be available at `http://localhost:5173`
 ### Building
 
 Build for production:
+
 ```bash
 npm run build
 ```
 
 Preview the production build:
+
 ```bash
 npm run preview
 ```
@@ -150,25 +163,31 @@ npm run preview
 ## API Endpoints
 
 ### Events API (`/api/events`)
+
 - **GET** `/api/events` - Retrieve all events
 - **POST** `/api/events` - Create a new event
   - Required fields: `name`, `description`, `date`, `categoryId`, `location`
 
 ### Registration API (`/api/registration`)
+
 - Manage event registrations and attendee information
 
 ## Features in Detail
 
 ### Event Management
+
 Browse a curated list of events with full details including date, location, category, and media (images/videos).
 
 ### Budget Calculator
+
 An interactive tool to calculate event budgets based on various factors and attendee counts.
 
 ### Event Registration
+
 Simple registration flow allowing users to sign up for events with their personal information.
 
 ### Responsive Design
+
 The entire application is built mobile-first and works seamlessly across all device sizes.
 
 ## Deployment

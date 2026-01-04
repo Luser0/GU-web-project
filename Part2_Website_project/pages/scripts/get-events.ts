@@ -166,7 +166,7 @@ function createEventCard(event: Event): HTMLElement {
   const isPast = eventDate < new Date();
 
   card.innerHTML = `
-    <div class="bg-gradient-to-r from-blue-500 to-blue-600 h-40 flex items-center justify-center text-white">
+    <div class="bg-linear-to-r from-blue-500 to-blue-600 h-40 flex items-center justify-center text-white">
       <div class="text-center">
         <div class="text-4xl font-bold">${eventDate.getDate()}</div>
         <div class="text-lg">${eventDate.toLocaleDateString("en-US", { month: "short" })}</div>
@@ -272,7 +272,6 @@ function copyToClipboard(text: string): void {
 }
 */
 
-
 // Event Listeners
 function initializeEventListeners(): void {
   // Search and filters
@@ -296,7 +295,7 @@ function initializeEventListeners(): void {
 
   closeModalBtn?.addEventListener("click", closeModal);
   registerBtn?.addEventListener("click", registerForEvent);
-//   shareBtn?.addEventListener("click", shareEvent);
+  //   shareBtn?.addEventListener("click", shareEvent);
 
   modal?.addEventListener("click", (e) => {
     if (e.target === modal) closeModal();

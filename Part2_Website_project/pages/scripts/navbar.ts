@@ -25,15 +25,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const navbar = document.querySelector("#navbar");
 if (navbar) {
+  navbar.className = "bg-gray-900 text-white shadow-lg";
   navbar.innerHTML = `
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-7xl mx-auto sm:px-6 md:px-8">
         <div class="flex justify-between items-center h-16">
-          <!-- Logo/Brand -->
-          <div class="shrink-0">
-            <a href="/" class="text-2xl font-bold text-blue-400 hover:text-blue-300 transition-colors">
-              Event-X
-            </a>
-          </div>
+          <a href="/" class="text-2xl font-bold text-blue-400 hover:text-blue-300 transition-colors">
+            Event-X
+          </a>
 
           <!-- Desktop Menu -->
           <div class="hidden md:flex md:items-center md:space-x-6">
