@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Calculate event-related costs including tickets, travel, and stay."
+    />
+    <meta name="keywords" content="EventsX, Budget, Calculator, Planning" />
+    <meta name="author" content="Your Full Name" />
+    <title>Budget Calculator - EventX</title>
+
+    <script type="module" src="/pages/scripts/navbar.ts"></script>
+    <script
+      type="module"
+      src="/pages/scripts/event-budget-calculator.ts"
+    ></script>
+    <link rel="stylesheet" href="/pages/css/style.css" />
+  </head>
+  <body class="bg-gray-50 font-sans leading-normal tracking-normal">
+    <nav id="navbar"></nav>
+    <main class="container mx-auto px-4 py-8">
+      <div class="flex flex-col gap-8 md:flex-row">
+        <article class="rounded-lg bg-white p-6 shadow-sm md:w-3/4">
+          <h1 class="mb-4 text-3xl font-bold">Event Budget Calculator</h1>
+          <p class="mb-6 text-gray-700">
+            Estimate your total event expenses dynamically below.
+          </p>
+
+          <form id="budgetForm" class="space-y-4">
+            <fieldset class="rounded-md border p-6">
+              <legend class="px-2 text-lg font-semibold">
+                Expense Details
+              </legend>
+
+              <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                <div>
+                  <label for="ticketCost" class="block font-medium"
+                    >Ticket Price ($):</label
+                  >
+                  <input
+                    type="number"
+                    id="ticketCost"
+                    name="ticketCost"
+                    required
+                    class="w-full rounded border p-2 focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label for="travelCost" class="block font-medium"
+                    >Travel Cost ($):</label
+                  >
+                  <input
+                    type="number"
+                    id="travelCost"
+                    name="travelCost"
+                    required
+                    class="w-full rounded border p-2 focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label for="accommodationCost" class="block font-medium"
+                    >Accommodation (per night) ($):</label
+                  >
+                  <input
+                    type="number"
+                    id="accommodationCost"
+                    name="accommodationCost"
+                    required
+                    class="w-full rounded border p-2 focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label for="nights" class="block font-medium"
+                    >Number of Nights:</label
+                  >
+                  <input
+                    type="number"
+                    id="nights"
+                    name="nights"
+                    required
+                    class="w-full rounded border p-2 focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+              </div>
+
+              <button
+                type="button"
+                id="calculateBtn"
+                class="mt-6 rounded bg-blue-600 px-6 py-2 text-white transition duration-300 hover:bg-blue-700"
+              >
+                Calculate Total
+              </button>
+            </fieldset>
+          </form>
+
+          <div
+            id="calculatorResults"
+            aria-live="polite"
+            class="mt-8 rounded border border-blue-200 bg-blue-50 p-4"
+          >
+            <h3 class="text-xl font-bold text-blue-900">
+              Estimated Total:
+              <span id="totalDisplay" class="text-2xl">$0.00</span>
+            </h3>
+          </div>
+        </article>
+
+        <aside class="space-y-6 md:w-1/4">
+          <div class="rounded bg-white p-4 shadow-sm">
+            <h3 class="mb-4 border-b pb-2 font-bold">Search/Filter</h3>
+            <ul class="space-y-2 text-blue-600">
+              <li><a href="#" class="hover:underline">Filter by Date</a></li>
+              <li><a href="#" class="hover:underline">Search Category</a></li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </main>
+    <script src="../../src/services/budget-calculator/EventBudgetCalculator.ts"></script>
+  </body>
+</html>
