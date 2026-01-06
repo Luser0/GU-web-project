@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   if (eventId) {
     try {
-      const response = await fetch(`http://localhost:3000/api/events`);
+      const response = await fetch(`https://cse-211-final-project-group12.vercel.app/api/events`);
       const result = await response.json();
       
       const currentEvent = result.data.find((e: any) => e.id === parseInt(eventId));
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     submitBtn.innerHTML = `<span class="inline-block animate-spin mr-2">◌</span> Processing...`;
 
     try {
-      const response = await fetch("http://localhost:3000/api/registration", {
+      const response = await fetch("https://cse-211-final-project-group12.vercel.app/api/registration", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
