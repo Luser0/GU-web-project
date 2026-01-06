@@ -8,20 +8,20 @@
     <script type="module" src="/pages/scripts/navbar.ts"></script>
     <script type="module" src="./scripts/events.ts"></script>
   </head>
-  <body class="bg-[#0f172a] text-gray-100 font-sans antialiased">
+<body class="bg-[#0f172a] text-gray-100 font-sans antialiased">
     
     <nav id="navbar" class="bg-gray-900 text-white shadow-lg sticky top-0 z-50"></nav>
 
     <header class="py-20 px-6 border-b border-white/[0.05] bg-gradient-to-b from-gray-900 to-[#0f172a]">
       <div class="max-w-7xl mx-auto">
         <div class="inline-block px-3 py-1 rounded-full bg-[#50a2ff]/10 border border-[#50a2ff]/20 text-[#50a2ff] text-[10px] font-black uppercase tracking-[0.2em] mb-4">
-          2026 Season
+          2026 Curriculum
         </div>
         <h1 class="text-5xl md:text-6xl font-black tracking-tighter text-white mb-6">
-          Event <span class="text-[#50a2ff]">Schedule</span>
+          Workshop <span class="text-[#50a2ff]">Catalog</span>
         </h1>
         <p class="text-xl text-gray-400 max-w-2xl leading-relaxed">
-          Access world-class workshops and sessions. Explore our curriculum designed for the next generation of developers.
+          Expert-led sessions in web development and design. Find your path and scale your skillset.
         </p>
       </div>
     </header>
@@ -30,7 +30,6 @@
       
       <div id="loading" class="flex flex-col items-center py-24">
         <div class="w-12 h-12 border-2 border-white/10 border-t-[#50a2ff] rounded-full animate-spin"></div>
-        <p class="mt-4 text-xs font-bold uppercase tracking-widest text-gray-600">Syncing Schedule...</p>
       </div>
 
       <div id="error" class="hidden p-10 bg-red-950/20 border border-red-900/50 rounded-3xl text-center">
@@ -42,10 +41,11 @@
           <table class="w-full text-left border-collapse">
             <thead>
               <tr class="bg-white/[0.02] border-b border-white/[0.05]">
-                <th class="px-6 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-gray-500">Workshop Session</th>
-                <th class="px-6 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-gray-500">Scheduled Date</th>
-                <th class="px-6 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 hidden lg:table-cell">Overview</th>
-                <th class="px-6 py-5"></th>
+                <th class="px-6 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-gray-500">Workshop Details</th>
+                <th class="px-6 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-gray-500">Date</th>
+                <th class="px-6 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 hidden md:table-cell">Location</th>
+                <th class="px-6 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-gray-500">Price (EGP)</th>
+                <th class="px-6 py-6"></th>
               </tr>
             </thead>
             <tbody id="eventsBody" class="divide-y divide-white/[0.02]">
@@ -54,44 +54,45 @@
         </div>
       </section>
 
-      <div class="mt-8 flex justify-center">
-        <div class="px-4 py-2 bg-white/5 border border-white/5 rounded-full">
-            <p class="text-[10px] font-bold tracking-widest text-gray-600 uppercase">
-              Live Sessions Available: <span id="resultCount" class="text-[#50a2ff] ml-1">0</span>
-            </p>
-        </div>
+      <div class="mt-8 text-center">
+        <p class="text-[10px] font-black tracking-[0.3em] text-gray-600 uppercase">
+          Showing <span id="resultCount" class="text-gray-400">0</span> Active Sessions
+        </p>
       </div>
     </main>
 
     <div id="eventModal" class="hidden fixed inset-0 z-[60] backdrop-blur-xl bg-slate-900/40 items-center justify-center p-6 transition-all duration-300">
-      <article class="bg-[#111827] border border-white/[0.1] rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.5)] max-w-xl w-full overflow-hidden animate-in zoom-in-95 duration-200">
+      <article class="bg-[#111827] border border-white/[0.1] rounded-[2.5rem] shadow-2xl max-w-xl w-full overflow-hidden animate-in zoom-in-95 duration-200">
         <div class="p-10">
-          <div class="flex justify-between items-center mb-8">
-            <h2 id="modalTitle" class="text-3xl font-black text-white tracking-tighter leading-none"></h2>
-            <button id="closeModal" class="group bg-white/5 hover:bg-white/10 text-gray-500 hover:text-white p-3 rounded-full transition-all">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path d="M6 18L18 6M6 6l12 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+          <div class="flex justify-between items-start mb-8">
+            <h2 id="modalTitle" class="text-3xl font-black text-white tracking-tighter leading-tight"></h2>
+            <button id="closeModal" class="bg-white/5 hover:bg-white/10 text-gray-500 hover:text-white p-3 rounded-full transition-all">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
           </div>
           
-          <div class="flex items-center space-x-3 mb-8">
-            <div id="modalDate" class="px-4 py-2 bg-[#50a2ff]/10 border border-[#50a2ff]/20 rounded-xl text-[#50a2ff] text-[11px] font-black uppercase tracking-widest"></div>
-            <span class="text-gray-600 text-[10px] font-bold uppercase tracking-widest">Open for Enrollment</span>
+          <div class="grid grid-cols-2 gap-4 mb-8">
+            <div class="bg-white/5 border border-white/5 p-4 rounded-2xl text-center">
+              <p class="text-[9px] font-black text-gray-500 uppercase tracking-widest mb-1">Schedule</p>
+              <p id="modalDate" class="text-xs font-bold text-[#50a2ff]"></p>
+            </div>
+            <div class="bg-white/5 border border-white/5 p-4 rounded-2xl text-center">
+              <p class="text-[9px] font-black text-gray-500 uppercase tracking-widest mb-1">Registration</p>
+              <p id="modalCost" class="text-xs font-bold text-white"></p>
+            </div>
           </div>
-          
+
+          <div class="flex items-center text-sm text-gray-400 mb-8 px-2">
+            <svg class="w-4 h-4 mr-2 text-[#50a2ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-width="2"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-width="2"/></svg>
+            <span id="modalLocation"></span>
+          </div>
+
           <div class="h-px bg-white/[0.05] w-full mb-8"></div>
-          
           <p id="modalDescription" class="text-gray-400 leading-relaxed text-lg mb-10"></p>
           
-          <footer class="space-y-4">
-            <button id="registerBtn" class="w-full py-5 bg-[#50a2ff] hover:bg-[#6ab0ff] text-white font-black uppercase tracking-[0.2em] text-xs rounded-2xl transition-all shadow-lg shadow-[#50a2ff]/20 active:scale-[0.98]">
-              Register Now
-            </button>
-            <p class="text-center text-gray-600 text-[10px] uppercase tracking-widest font-bold">
-              Instant confirmation via email
-            </p>
-          </footer>
+          <button id="registerBtn" class="w-full py-5 bg-[#50a2ff] hover:bg-[#6ab0ff] text-white font-black uppercase tracking-[0.2em] text-xs rounded-2xl transition-all shadow-lg shadow-[#50a2ff]/20 active:scale-[0.98]">
+            Register Now
+          </button>
         </div>
       </article>
     </div>
