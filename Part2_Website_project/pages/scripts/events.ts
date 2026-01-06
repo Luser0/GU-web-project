@@ -1,13 +1,27 @@
-import type { EventsGetType } from "api/events";
+interface Event {
+  id: number;
+  name: string;
+  description: string;
+  slug: string;
+  date: string;
+  categoryId: number;
+  location: string;
+  cost: number;
+  img: string;
+}
 
-const API_URL = `https://cse-211-final-project-group12.vercel.app/api/events`;
-let allEvents: EventsGetType["data"] = [];
-let currentEvent: EventsGetType["data"][number] | null = null;
+interface ApiResponse {
+  data: Event[];
+}
 
-function formatDate(dateString: string | Date): string {
+const API_URL = "http://localhost:3000/api/events";
+let allEvents: Event[] = [];
+let currentEvent: Event | null = null;
+
+function formatDate(dateString: string): string {
   return new Date(dateString).toLocaleDateString("en-US", {
     year: "numeric",
-    month: "long",
+    month: "short",
     day: "numeric",
   });
 }
@@ -26,10 +40,10 @@ async function fetchEvents(): Promise<void> {
   try {
     const response = await fetch(API_URL);
     if (!response.ok) throw new Error(`Status: ${response.status}`);
-    const result: EventsGetType = await response.json();
+    const result: ApiResponse = await response.json();
 
     allEvents = (result.data || []).sort(
-      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
     );
 
     renderTable();
@@ -39,7 +53,7 @@ async function fetchEvents(): Promise<void> {
     loading?.classList.add("hidden");
     errorEl?.classList.remove("hidden");
     const msg = document.getElementById("errorMessage");
-    if (msg) msg.textContent = "Unable to load the Event-X schedule.";
+    if (msg) msg.textContent = "Unable to connect to the Event-X server.";
   }
 }
 
@@ -53,27 +67,43 @@ function renderTable(): void {
 
   allEvents.forEach((event) => {
     const row = document.createElement("tr");
-    row.className =
-      "group border-b border-gray-800/50 hover:bg-white/[0.02] transition-all cursor-pointer";
+    row.className = "group border-b border-white/[0.03] hover:bg-white/[0.02] transition-all cursor-pointer";
 
     row.innerHTML = `
-      <td class="px-6 py-6">
-        <span class="block text-sm font-bold text-white group-hover:text-[#50a2ff] transition-colors">
-          ${escapeHtml(event.name)}
-        </span>
+      <td class="px-6 py-5">
+        <div class="flex items-center space-x-4">
+          <div class="h-12 w-16 flex-shrink-0 overflow-hidden rounded-xl bg-gray-800 border border-white/10 shadow-lg">
+            <img src="${event.img}" alt="${event.name}" class="h-full w-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" 
+                 onerror="this.src='https://placehold.co/400x300/111827/50a2ff?text=Event'">
+          </div>
+          <div>
+            <span class="block text-sm font-bold text-white group-hover:text-[#50a2ff] transition-colors leading-tight">
+              ${escapeHtml(event.name)}
+            </span>
+            <span class="text-[10px] text-gray-500 uppercase tracking-widest font-bold lg:hidden">
+              ${event.location}
+            </span>
+          </div>
+        </div>
       </td>
-      <td class="px-6 py-6">
-        <span class="text-xs font-mono font-medium text-gray-500 uppercase tracking-widest">
+      <td class="px-6 py-5">
+        <span class="text-xs font-mono text-gray-400">
           ${formatDate(event.date)}
         </span>
       </td>
-      <td class="px-6 py-6 hidden lg:table-cell">
-        <p class="text-sm text-gray-400 line-clamp-1 max-w-sm">
-          ${escapeHtml(event.description)}
-        </p>
+      <td class="px-6 py-5 hidden md:table-cell">
+        <div class="flex items-center text-xs text-gray-400">
+          <svg class="w-3 h-3 mr-2 text-[#50a2ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-width="2"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-width="2"/></svg>
+          ${escapeHtml(event.location)}
+        </div>
       </td>
-      <td class="px-6 py-6 text-right">
-        <button class="text-[10px] font-black uppercase tracking-widest text-gray-400 group-hover:text-white border border-gray-700 group-hover:border-[#50a2ff] px-4 py-2 rounded-md transition-all">
+      <td class="px-6 py-5">
+        <span class="text-sm font-black text-white">
+          ${event.cost.toLocaleString()} <span class="text-[10px] text-gray-500 font-bold ml-1">EGP</span>
+        </span>
+      </td>
+      <td class="px-6 py-5 text-right">
+        <button class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 group-hover:text-white border border-white/10 group-hover:border-[#50a2ff] px-4 py-2 rounded-lg transition-all">
           Details
         </button>
       </td>
@@ -84,14 +114,15 @@ function renderTable(): void {
   });
 }
 
-function openModal(event: EventsGetType["data"][number]): void {
+function openModal(event: Event): void {
   currentEvent = event;
   const modal = document.getElementById("eventModal");
   if (modal) {
     document.getElementById("modalTitle")!.textContent = event.name;
-    document.getElementById("modalDescription")!.textContent =
-      event.description;
+    document.getElementById("modalDescription")!.textContent = event.description;
     document.getElementById("modalDate")!.textContent = formatDate(event.date);
+    document.getElementById("modalLocation")!.textContent = event.location;
+    document.getElementById("modalCost")!.textContent = `${event.cost.toLocaleString()} EGP`;
 
     modal.classList.remove("hidden");
     modal.classList.add("flex");
@@ -111,13 +142,11 @@ function closeModal(): void {
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("closeModal")?.addEventListener("click", closeModal);
   document.getElementById("registerBtn")?.addEventListener("click", () => {
-    if (currentEvent) {
-      window.location.href = `/pages/registration.html?id=${currentEvent.id}`;
-    }
+    if (currentEvent) window.location.href = `/pages/registration.html?id=${currentEvent.id}`;
   });
-
+  
   const modal = document.getElementById("eventModal");
   modal?.addEventListener("click", (e) => e.target === modal && closeModal());
-
+  
   fetchEvents();
 });
