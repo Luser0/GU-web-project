@@ -14,7 +14,7 @@ interface ApiResponse {
   data: Event[];
 }
 
-const API_URL = "http://localhost:3000/api/events";
+const API_URL = "https://cse-211-final-project-group12.vercel.app/api/events";
 let allEvents: Event[] = [];
 let currentEvent: Event | null = null;
 
