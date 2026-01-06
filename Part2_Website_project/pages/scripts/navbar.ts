@@ -66,7 +66,6 @@ if (navbar) {
           <a href="/pages/about.html" class="block hover:bg-gray-700 hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-base font-medium">About</a>
           <a href="/pages/events.html" class="block hover:bg-gray-700 hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-base font-medium">Events</a>
           <a href="/pages/budget-calculator.html" class="block hover:bg-gray-700 hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-base font-medium">Budget Calculator</a>
-          <a href="/pages/registration.html" class="block hover:bg-gray-700 hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-base font-medium">Registration</a>
           <a href="/pages/contact.html" class="block hover:bg-gray-700 hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-base font-medium">Contact</a>
         </div>
       </div>
