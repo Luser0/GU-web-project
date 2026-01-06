@@ -122,10 +122,10 @@ function closeModal(): void {
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("closeModal")?.addEventListener("click", closeModal);
   document.getElementById("registerBtn")?.addEventListener("click", () => {
-    if (currentEvent)
-      window.location.href = `/pages/registration.html?event=${currentEvent.slug}`;
+    if (currentEvent) {
+      window.location.href = `/pages/registration.html?id=${currentEvent.id}`;
+    }
   });
-
   const modal = document.getElementById("eventModal");
   modal?.addEventListener("click", (e) => e.target === modal && closeModal());
 

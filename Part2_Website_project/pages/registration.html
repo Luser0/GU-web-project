@@ -26,42 +26,32 @@
 
         <div class="rounded-[2.5rem] border border-white/[0.08] bg-gray-900/50 p-10 shadow-2xl backdrop-blur-xl">
           <form id="registrationForm" class="space-y-6">
-            <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-              <div class="space-y-2">
-                <label class="ml-1 text-[10px] font-black tracking-widest text-gray-500 uppercase">Full Name</label>
-                <input type="text" required placeholder="John Doe" class="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-4 text-white transition-all placeholder:text-gray-600 focus:border-[#50a2ff] focus:ring-1 focus:ring-[#50a2ff] focus:outline-none" />
-              </div>
-
-              <div class="space-y-2">
-                <label class="ml-1 text-[10px] font-black tracking-widest text-gray-500 uppercase">Email Address</label>
-                <input type="email" required placeholder="john@example.com" class="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-4 text-white transition-all placeholder:text-gray-600 focus:border-[#50a2ff] focus:ring-1 focus:ring-[#50a2ff] focus:outline-none" />
-              </div>
-            </div>
-
+            
             <div class="space-y-2">
-              <label class="ml-1 text-[10px] font-black tracking-widest text-gray-500 uppercase">Professional Role</label>
-              <select class="w-full cursor-pointer appearance-none rounded-xl border border-white/10 bg-white/5 px-4 py-4 text-white transition-all focus:border-[#50a2ff] focus:outline-none">
-                <option class="bg-[#0f172a]">Software Engineer</option>
-                <option class="bg-[#0f172a]">Designer</option>
-                <option class="bg-[#0f172a]">Student</option>
-                <option class="bg-[#0f172a]">Other</option>
-              </select>
+              <label class="text-[10px] font-black uppercase tracking-widest text-gray-500 ml-1">Full Name</label>
+              <input type="text" name="name" required placeholder="John Doe" 
+                class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-[#50a2ff] transition-all" />
             </div>
 
-            <div class="flex items-start space-x-3 py-2">
-              <input type="checkbox" required class="mt-1 h-4 w-4 rounded border-gray-700 bg-gray-800 text-[#50a2ff] focus:ring-[#50a2ff]" />
-              <p class="text-xs leading-relaxed text-gray-500">I agree to the
-                <span class="cursor-pointer text-gray-300 underline">Event-X Terms of Service</span>
-                and privacy policy regarding 2026 workshop attendance.
-              </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label class="text-[10px] font-black uppercase tracking-widest text-gray-500 ml-1">Email Address</label>
+                <input type="email" name="email" required placeholder="john@example.com" 
+                  class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-[#50a2ff] transition-all" />
+              </div>
+
+              <div class="space-y-2">
+                <label class="text-[10px] font-black uppercase tracking-widest text-gray-500 ml-1">Phone Number</label>
+                <input type="tel" name="phonenumber" required placeholder="+1 (555) 000-0000" 
+                  class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-[#50a2ff] transition-all" />
+              </div>
             </div>
 
-            <button type="submit" class="mt-4 w-full rounded-2xl bg-[#50a2ff] py-5 text-xs font-black tracking-[0.2em] text-white uppercase shadow-lg shadow-[#50a2ff]/20 transition-all hover:bg-[#6ab0ff] active:scale-[0.98]">
-              Complete Registration
+            <button type="submit" class="w-full py-5 bg-[#50a2ff] hover:bg-[#6ab0ff] text-white font-black uppercase tracking-[0.2em] text-xs rounded-2xl transition-all shadow-lg shadow-[#50a2ff]/20 active:scale-[0.98] mt-4">
+              Register Now
             </button>
           </form>
         </div>
-
         <div class="mt-8 text-center">
           <a href="events.html" class="text-xs font-bold tracking-widest text-gray-600 uppercase transition-colors hover:text-gray-400">
             Back to Schedule

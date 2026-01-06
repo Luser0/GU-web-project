@@ -1,28 +1,40 @@
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("registrationForm") as HTMLFormElement;
-  const eventNameDisplay = document.getElementById("selectedEventName");
-
+  
   const params = new URLSearchParams(window.location.search);
-  const eventSlug = params.get("event");
-
-  if (eventSlug && eventNameDisplay) {
-    const readableName = eventSlug.replace(/-/g, " ");
-    eventNameDisplay.textContent = readableName;
-  }
+  const eventId = params.get("id");
 
   form?.addEventListener("submit", async (e) => {
     e.preventDefault();
+    
+    const formData = new FormData(form);
+    const payload = {
+      eventId: eventId ? parseInt(eventId) : null,
+      name: formData.get("name"),
+      email: formData.get("email"),
+      phonenumber: formData.get("phonenumber")
+    };
 
-    const submitBtn = form.querySelector(
-      'button[type="submit"]',
-    ) as HTMLButtonElement;
-
+    const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
     submitBtn.disabled = true;
-    submitBtn.innerHTML = `<span class="inline-block animate-spin mr-2">◌</span> Processing...`;
+    submitBtn.innerHTML = `<span class="inline-block animate-spin mr-2">◌</span> Registering...`;
 
-    // Simulate API call
-    setTimeout(() => {
-      window.location.href = "/pages/thank-you.html";
-    }, 1500);
+    try {
+      const response = await fetch("http://localhost:3000/api/registration", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      if (response.ok) {
+        window.location.href = "/pages/thank-you.html";
+      } else {
+        throw new Error("Registration failed");
+      }
+    } catch (err) {
+      alert("Error: Could not complete registration.");
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Register Now";
+    }
   });
 });
